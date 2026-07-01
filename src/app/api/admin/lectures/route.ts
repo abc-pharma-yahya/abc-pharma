@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
       user_id: user.id,
       action: 'ADMIN_LECTURE_CREATE',
       resource: `lecture/${lecture.id}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: `Created lecture: ${lecture.title}`,
     })
 

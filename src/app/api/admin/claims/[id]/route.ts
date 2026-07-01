@@ -70,7 +70,7 @@ export async function PUT(
       user_id: user.id,
       action: status === 'APPROVED' ? 'ADMIN_CLAIM_APPROVE' : 'ADMIN_CLAIM_REJECT',
       resource: `claim/${id}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: admin_note ? `Note: ${admin_note}` : null,
     })
 

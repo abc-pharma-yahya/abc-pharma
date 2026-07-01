@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     await logAudit({
       user_id: newUser.id,
       action: 'AUTH_REGISTER',
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: `New user ${newUser.email} registered`,
     })
 

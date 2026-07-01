@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
       user_id: user.id,
       action: 'ADMIN_BUNDLE_CREATE',
       resource: `bundle/${bundle.id}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: `Created bundle: ${bundle.title}`,
     })
 

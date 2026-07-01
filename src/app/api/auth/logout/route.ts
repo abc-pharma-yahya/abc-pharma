@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
     await logAudit({
       user_id: user.id,
       action: 'AUTH_LOGOUT',
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
     })
   }
   await clearSession()

@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
       user_id: user.id,
       action: 'UPLOAD_FILE',
       resource: `${bucket}/${path}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: `File: ${file.name}, Size: ${file.size}`,
     })
 

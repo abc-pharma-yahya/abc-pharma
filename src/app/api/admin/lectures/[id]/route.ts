@@ -40,7 +40,7 @@ export async function PUT(
       user_id: user.id,
       action: 'ADMIN_LECTURE_UPDATE',
       resource: `lecture/${id}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
     })
 
     return NextResponse.json({ lecture })
@@ -72,7 +72,7 @@ export async function DELETE(
     user_id: user.id,
     action: 'ADMIN_LECTURE_DELETE',
     resource: `lecture/${id}`,
-    ip: req.headers.get('x-forwarded-for'),
+    ip: req.headers.get('x-forwarded-for') || '',
   })
 
   return NextResponse.json({ success: true })

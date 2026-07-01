@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     }
 
     if (user.is_locked) {
-      await logAudit({ user_id: user.id, action: 'AUTH_LOGIN_LOCKED', ip: req.headers.get('x-forwarded-for') })
+      await logAudit({ user_id: user.id, action: 'AUTH_LOGIN_LOCKED', ip: req.headers.get('x-forwarded-for') || '' })
       return NextResponse.json({ error: 'تم قفل حسابك. تواصل مع الإدارة' }, { status: 403 })
     }
 
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
     await logAudit({
       user_id: user.id,
       action: 'AUTH_LOGIN_SUCCESS',
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: `User ${user.email} logged in`,
     })
 

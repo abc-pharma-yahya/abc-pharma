@@ -41,7 +41,7 @@ export async function PUT(
       user_id: user.id,
       action: 'ADMIN_BUNDLE_UPDATE',
       resource: `bundle/${id}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
     })
 
     return NextResponse.json({ bundle })
@@ -79,7 +79,7 @@ export async function DELETE(
     user_id: user.id,
     action: 'ADMIN_BUNDLE_DELETE',
     resource: `bundle/${id}`,
-    ip: req.headers.get('x-forwarded-for'),
+    ip: req.headers.get('x-forwarded-for') || '',
   })
 
   return NextResponse.json({ success: true })

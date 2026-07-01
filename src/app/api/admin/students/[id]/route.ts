@@ -34,7 +34,7 @@ export async function PUT(
         user_id: admin.id,
         action: newLocked ? 'ADMIN_STUDENT_LOCK' : 'ADMIN_STUDENT_UNLOCK',
         resource: `user/${id}`,
-        ip: req.headers.get('x-forwarded-for'),
+        ip: req.headers.get('x-forwarded-for') || '',
       })
     } else if (action === 'toggle_active') {
       const { data: student } = await supabase
@@ -54,7 +54,7 @@ export async function PUT(
         user_id: admin.id,
         action: newActive ? 'ADMIN_STUDENT_ACTIVATE' : 'ADMIN_STUDENT_DEACTIVATE',
         resource: `user/${id}`,
-        ip: req.headers.get('x-forwarded-for'),
+        ip: req.headers.get('x-forwarded-for') || '',
       })
     } else if (action === 'reset_password') {
       const hashed = await hashPassword('123456')
@@ -67,7 +67,7 @@ export async function PUT(
         user_id: admin.id,
         action: 'ADMIN_STUDENT_RESET_PASSWORD',
         resource: `user/${id}`,
-        ip: req.headers.get('x-forwarded-for'),
+        ip: req.headers.get('x-forwarded-for') || '',
       })
     } else {
       return NextResponse.json({ error: 'إجراء غير معروف' }, { status: 400 })

@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       action,
       resource: resource || null,
       details: details || null,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
     })
 
     return NextResponse.json({ success: true })

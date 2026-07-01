@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
       user_id: user.id,
       action: 'CLAIM_SUBMIT',
       resource: `bundle/${bundle_id}`,
-      ip: req.headers.get('x-forwarded-for'),
+      ip: req.headers.get('x-forwarded-for') || '',
       details: `Claim ${claim.id} for ${amount} EGP`,
     })
 
